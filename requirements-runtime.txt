@@ -19,3 +19,5 @@ pandas==2.2.3
 websockets==13.1
 cupy-cuda12x==13.3.0
 huggingface_hub[hf_xet]==0.35.3
+# Official RunPod PyTorch base includes PyGObject which requires pycairo.
+pycairo==1.27.0

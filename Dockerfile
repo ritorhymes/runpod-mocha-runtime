@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     MOCHA_HOME=/workspace/mocha \
     HF_HUB_DISABLE_TELEMETRY=1
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      git git-lfs ffmpeg ca-certificates curl \
+      git git-lfs ffmpeg ca-certificates curl libcairo2-dev pkg-config \
     && rm -rf /var/lib/apt/lists/* \
     && git lfs install --system
 COPY requirements-runtime.txt /opt/mocha/requirements-runtime.txt
