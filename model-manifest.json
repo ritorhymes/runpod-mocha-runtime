@@ -45,6 +45,22 @@
         {
           "path": "diffusion_pytorch_model-00006-of-00006.safetensors",
           "size": 7910235256
+        },
+        {
+          "path": "google/umt5-xxl/special_tokens_map.json",
+          "size": 6623
+        },
+        {
+          "path": "google/umt5-xxl/spiece.model",
+          "size": 4548313
+        },
+        {
+          "path": "google/umt5-xxl/tokenizer.json",
+          "size": 16837417
+        },
+        {
+          "path": "google/umt5-xxl/tokenizer_config.json",
+          "size": 61728
         }
       ]
     },

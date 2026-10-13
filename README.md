@@ -8,8 +8,8 @@ This project is a companion to the private/local controller at ~/techstuff/runpo
 
 - Official MoCha source: see model-manifest.json for **exact commit**
 - Official MoCha checkpoint: Orange-3DV-Team/MoCha, preview/step18500.ckpt
-- Official Wan 2.1 T2V 14B: 6 BF16 DiT shards, official T5 encoder, VAE
-- Total model bytes: **97,600,801,337 (~97.6 decimal GB)**
+- Official Wan 2.1 T2V 14B: 6 BF16 DiT shards, official T5 encoder, tokenizer files, VAE
+- Total model bytes: **97,622,255,418 (~97.6 decimal GB)**
 - Official baseline: **832x480**, 81 frames, 50 steps, BF16, 30 fps.
 - No changes to the official architecture, denoising, checkpoints, or frame settings.
 - The upstream inference script literally contains /path/to/ placeholders. Our verified path-only wrapper substitutes those paths in a temporary copy at runtime.

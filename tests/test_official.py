@@ -25,9 +25,9 @@ class OfficialModelTests(unittest.TestCase):
         self.assertEqual(self.info["officialImageSize"], [832, 480])
         self.assertEqual(self.info["officialFrames"], 81)
         self.assertEqual(self.info["officialFps"], 30)
-        self.assertEqual(len(list(models.expected_files(self.info, Path("/tmp/nowhere")))), 9)
+        self.assertEqual(len(list(models.expected_files(self.info, Path("/tmp/nowhere")))), 13)
         self.assertEqual(sum(f["size"] for m in self.info["hfRepositories"] for f in m["files"]),
-                         97_600_801_337)
+                         97622255418)
         self.assertEqual(self.info["officialGitRevision"],
                          "aa503085c3b985e1c44ae4f7786c2a9402df53c1")
 
