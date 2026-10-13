@@ -1,0 +1,21 @@
+# The official MoCha repo requires Python 3.10 and transformers==4.46.2.
+# Torch 2.2.0 / torchvision 0.17.0 with CUDA 12.1 are provided by the
+# official RunPod base image. Keep those packages from being upgraded.
+torch==2.2.0
+torchvision==0.17.0
+numpy==1.26.4
+transformers==4.46.2
+controlnet-aux==0.0.7
+imageio==2.36.1
+imageio-ffmpeg==0.5.1
+safetensors==0.5.3
+einops==0.8.0
+sentencepiece==0.2.0
+protobuf==5.29.5
+modelscope==1.22.3
+ftfy==6.3.1
+lightning==2.2.5
+pandas==2.2.3
+websockets==13.1
+cupy-cuda12x==13.3.0
+huggingface_hub[hf_xet]==0.35.3

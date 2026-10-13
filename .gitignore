@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+outputs/
+downloads/
+media/
+jobs/
+*.mp4
+*.mkv
+*.mov
+*.png
+*.jpg
+*.safetensors
+*.pth
+*.ckpt

@@ -1,0 +1,4 @@
+# Tiny image used solely to initialize the package before making it public.
+# Do NOT include model weights, runtime libraries, code, or media.
+FROM scratch
+LABEL org.opencontainers.image.description="Empty visibility bootstrap image"

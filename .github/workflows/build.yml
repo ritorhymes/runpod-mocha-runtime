@@ -1,0 +1,62 @@
+name: Build official MoCha BF16 runtime
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-source:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run offline unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Verify upstream revision and path-only customization
+        run: python3 scripts/official.py patch-check --root "$RUNNER_TEMP/mocha-source-smoke"
+      - name: Print official checkpoint plan (no weights downloaded)
+        run: python3 scripts/models.py plan
+
+  container:
+    needs: verify-source
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Block large image upload unless GHCR package is PUBLIC
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          visibility="$(gh api users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }} --jq .visibility)"
+          if [ "$visibility" != "public" ]; then
+            echo "::error::GHCR package must be public before uploading a large image (avoid private-package billing)."
+            exit 1
+          fi
+      - name: Reclaim preinstalled runner disk space (CUDA images are large)
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/hostedtoolcache /usr/local/share/powershell
+          sudo apt-get clean
+          df -h /
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          provenance: false
+          tags: |
+            ghcr.io/${{ github.repository }}:sha-${{ github.sha }}
+            ghcr.io/${{ github.repository }}:main
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.description=Official MoCha BF16 inference runtime, no weights or footage included

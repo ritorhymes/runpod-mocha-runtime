@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "officialGitRepo": "https://github.com/Orange-3DV-Team/MoCha.git",
+  "officialGitRevision": "aa503085c3b985e1c44ae4f7786c2a9402df53c1",
+  "officialImageSize": [
+    832,
+    480
+  ],
+  "officialFrames": 81,
+  "officialFps": 30,
+  "officialPrecision": "bfloat16",
+  "hfRepositories": [
+    {
+      "repo": "Wan-AI/Wan2.1-T2V-14B",
+      "revision": "a064a6c71f5be440641209c07bf2a5ce7a2ff5e4",
+      "files": [
+        {
+          "path": "Wan2.1_VAE.pth",
+          "size": 507609880
+        },
+        {
+          "path": "models_t5_umt5-xxl-enc-bf16.pth",
+          "size": 11361920418
+        },
+        {
+          "path": "diffusion_pytorch_model-00001-of-00006.safetensors",
+          "size": 9887603256
+        },
+        {
+          "path": "diffusion_pytorch_model-00002-of-00006.safetensors",
+          "size": 9839059648
+        },
+        {
+          "path": "diffusion_pytorch_model-00003-of-00006.safetensors",
+          "size": 9839059744
+        },
+        {
+          "path": "diffusion_pytorch_model-00004-of-00006.safetensors",
+          "size": 9839059744
+        },
+        {
+          "path": "diffusion_pytorch_model-00005-of-00006.safetensors",
+          "size": 9839059744
+        },
+        {
+          "path": "diffusion_pytorch_model-00006-of-00006.safetensors",
+          "size": 7910235256
+        }
+      ]
+    },
+    {
+      "repo": "Orange-3DV-Team/MoCha",
+      "revision": "ad0c06c6df79634d6a4d5eec862a35125ed26173",
+      "files": [
+        {
+          "path": "preview/step18500.ckpt",
+          "size": 28577193647
+        }
+      ]
+    }
+  ]
+}

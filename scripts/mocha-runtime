@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+case "${1:-help}" in
+  plan) shift; exec python /opt/mocha/scripts/models.py plan "$@" ;;
+  download) shift; exec python /opt/mocha/scripts/models.py download "$@" ;;
+  verify) shift; exec python /opt/mocha/scripts/models.py verify "$@" ;;
+  source) shift; exec python /opt/mocha/scripts/official.py source "$@" ;;
+  patch-check) shift; exec python /opt/mocha/scripts/official.py patch-check "$@" ;;
+  run) shift; exec python /opt/mocha/scripts/official.py run "$@" ;;
+  smoke)
+    python -c 'import torch, torchvision, transformers, pandas, cupy, imageio, huggingface_hub; print("Software imports: PASS"); print("Torch",torch.__version__,"CUDA",torch.version.cuda,"GPU available",torch.cuda.is_available())'
+    ;;
+  help|-h|--help)
+    echo "mocha-runtime plan           Print verified official model sizes"
+    echo "mocha-runtime source         Fetch pinned official MoCha source (no weights)"
+    echo "mocha-runtime patch-check    Validate official checkpoint path substitution"
+    echo "mocha-runtime download       Fetch ~97.6 GB official BF16 weights (temporary)"
+    echo "mocha-runtime verify         Verify checkpoint byte counts"
+    echo "mocha-runtime smoke          Verify Python software imports"
+    echo "mocha-runtime run --csv /workspace/shot.csv --output /workspace/output"
+    ;;
+  *) echo "Unknown action: $1" >&2; exit 2 ;;
+esac
