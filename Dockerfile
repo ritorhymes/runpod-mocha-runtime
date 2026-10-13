@@ -5,7 +5,7 @@ FROM runpod/pytorch:2.2.0-py3.10-cuda12.1.1-devel-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    MOCHA_HOME=/workspace/mocha \
+    MOCHA_HOME=/opt/mocha/data \
     HF_HUB_DISABLE_TELEMETRY=1
 RUN apt-get update && apt-get install -y --no-install-recommends \
       git git-lfs ffmpeg ca-certificates curl libcairo2-dev pkg-config \

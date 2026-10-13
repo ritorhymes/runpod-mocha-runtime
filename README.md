@@ -42,7 +42,7 @@ No GPU inference is claimed until separately tested on an authorized paid Pod.
     mocha-runtime verify
     mocha-runtime run --csv /workspace/job/shot.csv --output /workspace/results
 
-The download step verifies checkpoint sizes; it does NOT quantize or alter them. Expect ~97.6 GB downloads into the Pod's local ephemeral disk, plus extra working space. **A container disk of at least 180 GB is recommended for the first trial**. The image contains dependencies only; no model download during image build.
+The download step verifies checkpoint sizes; it does NOT quantize or alter them. Expect ~97.6 GB downloads into the disposable container filesystem at /opt/mocha/data, plus extra working space. **A container disk of at least 180 GB is recommended for the first trial (volume size zero)**. The image contains dependencies only; no model download during image build.
 
 The CSV has the official columns:
 source_video,source_mask,reference_1,reference_2
