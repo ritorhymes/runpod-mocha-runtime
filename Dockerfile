@@ -20,6 +20,11 @@ COPY model-manifest.json /opt/mocha/model-manifest.json
 RUN chmod 755 /opt/mocha/scripts/mocha-runtime \
     && python -m compileall -q /opt/mocha/scripts \
     && ln -s /opt/mocha/scripts/mocha-runtime /usr/local/bin/mocha-runtime
+# Catch missing research imports before a paid GPU session. Source is checked
+# against an exact upstream commit and removed after this CPU-only test.
+RUN mocha-runtime source --root /tmp/mocha-upstream-import \
+    && PYTHONPATH=/tmp/mocha-upstream-import/upstream python -c "from diffsynth import ModelManager, WanVideoMoChaPipeline, save_video, VideoData; from diffsynth.set_condition_branch import set_stand_in; print('Official MoCha runtime imports: PASS')" \
+    && rm -rf /tmp/mocha-upstream-import
 WORKDIR /workspace
 # Intentionally inherit RunPod's original /start.sh configuration. This
 # preserves SSH and JupyterLab; only the inference tooling is added.
